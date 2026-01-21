@@ -1,0 +1,14 @@
+{
+  "name": "fic-cleaning-shopify-app",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Starter backend for the FIC Cleaning Shopify app.",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "node src/server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "uuid": "^9.0.1"
+  }
+}
