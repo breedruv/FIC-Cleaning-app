@@ -22,3 +22,9 @@ This repository contains the product and technical blueprint for a Shopify app t
 - `cd app`
 - `npm install`
 - `npm run dev`
+
+## Starter API endpoints
+- `GET /health` returns service health.
+- `POST /api/service-requests` creates a service request and returns a service number.
+- `GET /api/service-requests/:serviceNumber` fetches status milestones for the request.
+- `GET /api/shopify/status` returns the Shopify scaffold status.
