@@ -1,0 +1,6 @@
+app/node_modules/
+app/prisma/dev.db
+app/prisma/dev.db-journal
+app/prisma/dev.db-shm
+app/prisma/dev.db-wal
+.env

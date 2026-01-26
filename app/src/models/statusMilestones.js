@@ -1,7 +1,6 @@
 const statusMilestones = [
   'Request Submitted',
-  'Shipment In Transit',
-  'Received & Intake',
+  'Checked in',
   'Cleaning In Progress',
   'Quality Review',
   'Ready for Return',

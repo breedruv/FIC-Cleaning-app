@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FIC Cleaning Service Tracker</title>
+    <link rel="stylesheet" href="portal.css" />
+  </head>
+  <body>
+    <!--
+      Customer portal template.
+      Notes:
+      - This is a simple, framework-free UI so you can learn each piece.
+      - The data comes from GET /api/service-requests/:serviceNumber.
+      - Customize the copy, colors, and layout in portal.css.
+    -->
+    <div class="page">
+      <header class="hero">
+        <div class="hero__content">
+          <p class="hero__eyebrow">FIC Cleaning Service</p>
+          <h1 class="hero__title">Track the status of your service.</h1>
+          <p class="hero__subtitle">
+            Use your service number to see the current status, milestones, and published documents.
+          </p>
+        </div>
+        <div class="hero__badge">
+          <span>Service Portal</span>
+        </div>
+      </header>
+
+      <main class="content">
+        <section class="lookup">
+          <form id="lookup-form" class="lookup__form">
+            <label class="lookup__label" for="service-number">Service number</label>
+            <div class="lookup__controls">
+              <input
+                id="service-number"
+                name="service-number"
+                type="text"
+                placeholder="Example: FIC-2026-ABCD"
+                autocomplete="off"
+              />
+              <button id="lookup-button" type="submit">Find my status</button>
+            </div>
+            <p class="lookup__hint">
+              Your service number is in the confirmation email after you submit a request.
+            </p>
+          </form>
+        </section>
+
+        <section class="status">
+          <div id="status-card" class="status__card">
+            <div class="status__headline">
+              <div>
+                <p class="status__label">Service</p>
+                <p id="service-number-display" class="status__number">---</p>
+              </div>
+              <span id="status-pill" class="status__pill" data-variant="neutral">Awaiting lookup</span>
+            </div>
+            <p id="status-message" class="status__message">
+              Enter your service number to see progress updates from our team.
+            </p>
+            <div id="status-meta" class="status__meta"></div>
+          </div>
+        </section>
+
+        <section class="timeline">
+          <div class="section__header">
+            <h2>Progress tracker</h2>
+            <p>Each milestone is updated by the service team as your items move through the process.</p>
+          </div>
+          <ol id="milestones" class="timeline__list"></ol>
+        </section>
+
+        <section class="documents">
+          <div class="section__header">
+            <h2>Documents</h2>
+            <p>Inspection reports, invoices, and summaries will appear here when published.</p>
+          </div>
+          <div id="documents" class="documents__grid empty">No documents published yet.</div>
+        </section>
+      </main>
+    </div>
+
+    <script src="portal.js" defer></script>
+  </body>
+</html>

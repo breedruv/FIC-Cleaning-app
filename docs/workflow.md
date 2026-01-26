@@ -9,7 +9,7 @@
    - Customer ships items with service number referenced.
    - Optional: tracking number captured in portal.
 
-3. **Received & Intake**
+3. **Checked in**
    - Service team confirms receipt.
    - Intake checklist completed, photos uploaded.
 

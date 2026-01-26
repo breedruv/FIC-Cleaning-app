@@ -5,10 +5,17 @@
   "description": "Starter backend for the FIC Cleaning Shopify app.",
   "main": "src/server.js",
   "scripts": {
-    "dev": "node src/server.js"
+    "dev": "node src/server.js",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev --name init",
+    "prisma:studio": "prisma studio"
   },
   "dependencies": {
+    "@prisma/client": "^5.13.0",
     "express": "^4.19.2",
     "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "prisma": "^5.13.0"
   }
 }

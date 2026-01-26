@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FIC Cleaning Admin Console</title>
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+  <body>
+    <!--
+      Admin portal template.
+      Notes:
+      - This is a plain HTML/CSS/JS layout so you can learn the structure.
+      - The API is in-memory only right now; data resets when the server restarts.
+      - No authentication is wired yet. Add it before exposing this publicly.
+    -->
+    <div class="app">
+      <header class="topbar">
+        <div class="topbar__title">
+          <p class="eyebrow">FIC Cleaning</p>
+          <h1>Admin Service Console</h1>
+        </div>
+        <div class="topbar__actions">
+          <label class="search">
+            <span>Search</span>
+            <input id="search-input" type="search" placeholder="Service number" />
+          </label>
+          <button id="refresh-button" class="btn btn--ghost" type="button">Refresh</button>
+          <button id="seed-button" class="btn" type="button">Create demo request</button>
+        </div>
+      </header>
+
+      <main class="grid">
+        <aside class="panel panel--list">
+          <div class="panel__header">
+            <h2>Service requests</h2>
+            <p>Newest first. Select one to view details and update status.</p>
+          </div>
+          <ul id="requests-list" class="requests"></ul>
+          <div id="list-empty" class="empty-state hidden">
+            <p>No requests yet.</p>
+            <p>Click "Create demo request" to seed one for testing.</p>
+          </div>
+        </aside>
+
+        <section class="panel panel--detail">
+          <div id="detail-empty" class="empty-state">
+            <h3>Select a request</h3>
+            <p>The details panel updates when you click a service request on the left.</p>
+          </div>
+          <div id="detail-view" class="detail hidden"></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="admin.js" defer></script>
+  </body>
+</html>

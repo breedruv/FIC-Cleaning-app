@@ -1,0 +1,119 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model ServiceRequest {
+  id            String               @id @default(uuid())
+  serviceNumber String               @unique
+  status        String
+  customer      String?
+  createdAt     DateTime             @default(now())
+  updatedAt     DateTime             @updatedAt
+  intakeSetCount         Int?
+  items         ServiceItem[]
+  statusEvents  ServiceStatusEvent[]
+  documents     ServiceDocument[]
+  intakeSets    ServiceIntakeSet[]
+  intakeInjectors ServiceIntakeInjector[]
+  cleaningRounds ServiceCleaningRound[]
+  cleaningEntries ServiceCleaningEntry[]
+  qualitySelections ServiceQualitySelection[]
+}
+
+model ServiceItem {
+  id               String         @id @default(uuid())
+  serviceRequest   ServiceRequest @relation(fields: [serviceRequestId], references: [id])
+  serviceRequestId String
+  name             String
+  quantity         Int            @default(1)
+  conditionNotes   String?
+}
+
+model ServiceStatusEvent {
+  id               String         @id @default(uuid())
+  serviceRequest   ServiceRequest @relation(fields: [serviceRequestId], references: [id])
+  serviceRequestId String
+  status           String
+  noteInternal     String?
+  notePublic       String?
+  createdBy        String
+  createdAt        DateTime       @default(now())
+}
+
+model ServiceDocument {
+  id               String         @id @default(uuid())
+  serviceRequest   ServiceRequest @relation(fields: [serviceRequestId], references: [id])
+  serviceRequestId String
+  title            String
+  type             String
+  url              String
+  setNumber        Int?
+  injectorNumber   Int?
+  isPublished      Boolean        @default(false)
+  createdAt        DateTime       @default(now())
+  publishedAt      DateTime?
+}
+
+model ServiceIntakeInjector {
+  id               String         @id @default(uuid())
+  serviceRequest   ServiceRequest @relation(fields: [serviceRequestId], references: [id])
+  serviceRequestId String
+  setNumber        Int
+  injectorNumber   Int
+  serialNumber     String?
+
+  @@unique([serviceRequestId, setNumber, injectorNumber])
+}
+
+model ServiceIntakeSet {
+  id               String         @id @default(uuid())
+  serviceRequest   ServiceRequest @relation(fields: [serviceRequestId], references: [id])
+  serviceRequestId String
+  setNumber        Int
+  injectorCount    Int
+  name             String?
+
+  @@unique([serviceRequestId, setNumber])
+}
+
+model ServiceCleaningRound {
+  id               String         @id @default(uuid())
+  serviceRequest   ServiceRequest @relation(fields: [serviceRequestId], references: [id])
+  serviceRequestId String
+  setNumber        Int
+  roundIndex       Int
+  label            String
+  createdAt        DateTime       @default(now())
+
+  @@unique([serviceRequestId, setNumber, roundIndex])
+}
+
+model ServiceCleaningEntry {
+  id               String         @id @default(uuid())
+  serviceRequest   ServiceRequest @relation(fields: [serviceRequestId], references: [id])
+  serviceRequestId String
+  setNumber        Int
+  roundIndex       Int
+  injectorNumber   Int
+  flowValue        String?
+  deadTime         String?
+  note             String?
+
+  @@unique([serviceRequestId, setNumber, roundIndex, injectorNumber])
+}
+
+model ServiceQualitySelection {
+  id               String         @id @default(uuid())
+  serviceRequest   ServiceRequest @relation(fields: [serviceRequestId], references: [id])
+  serviceRequestId String
+  setNumber        Int
+  injectorNumber   Int
+  roundIndex       Int
+
+  @@unique([serviceRequestId, setNumber, injectorNumber])
+}
